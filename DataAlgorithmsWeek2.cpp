@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <chrono>
 
 void Swap(int* a, int* b) {
     int temp = *b;
@@ -30,20 +31,25 @@ int main()
 {
     srand(time(0));
     
-    int bigData[1000];
-    
-    for (int i = 0; i < 1000; i++) {
-        bigData[i] = rand() % 101;
-    }
+    int bigData[100000];
 
     int arraySize = sizeof(bigData) / sizeof(int);
-
+    
+    for (int i = 0; i < arraySize; i++) {
+        bigData[i] = rand() % 101;
+    }
+    
+    auto start = std::chrono::high_resolution_clock::now();
     SelectionSort(bigData, arraySize);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(end - start);
 
     for (int i = 0; i < arraySize; i++)
     {
         std::cout << bigData[i] << std::endl;
     }
+
+    std::cout << "Time taken for sorting: " << duration.count() << " seconds" << std::endl;
 
     return 0;
 }
