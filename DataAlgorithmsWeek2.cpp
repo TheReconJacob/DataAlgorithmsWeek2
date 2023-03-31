@@ -27,11 +27,26 @@ void SelectionSort(int* a, int size)
     }
 }
 
+void BubbleSort(int* a, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size - 1; j++)
+        {
+            if (a[j] > a[j + 1])
+            {
+                Swap(&a[j], &a[j + 1]);
+            }
+        }
+    }
+}
+
+
 int main()
 {
     srand(time(0));
     
-    int bigData[100000];
+    int bigData[10000];
 
     int arraySize = sizeof(bigData) / sizeof(int);
     
@@ -40,7 +55,9 @@ int main()
     }
     
     auto start = std::chrono::high_resolution_clock::now();
-    SelectionSort(bigData, arraySize);
+    //SelectionSort(bigData, arraySize);
+    BubbleSort(bigData, arraySize);
+
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::seconds>(end - start);
 
