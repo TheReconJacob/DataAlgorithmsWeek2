@@ -28,16 +28,24 @@ void SelectionSort(int* a, int size)
 
 int main()
 {
-    int data[] = { 4,5,6,1,3,9,4,8,2,7 };
+    srand(time(0));
+    
+    int bigData[1000];
+    
+    for (int i = 0; i < 1000; i++) {
+        bigData[i] = rand() % 101;
+    }
 
-    int arraySize = sizeof(data) / sizeof(int);
+    int arraySize = sizeof(bigData) / sizeof(int);
 
-    SelectionSort(data, arraySize);
+    SelectionSort(bigData, arraySize);
 
     for (int i = 0; i < arraySize; i++)
     {
-        std::cout << data[i] << std::endl;
+        std::cout << bigData[i] << std::endl;
     }
+
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
