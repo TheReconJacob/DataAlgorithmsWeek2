@@ -72,6 +72,33 @@ int SequentialSearch(int* a, int size, int key)
     return -1;
 }
 
+int BinarySearch(int* a, int size, int key)
+{
+    int middle = 0;
+    int lower = 0;
+    int upper = size - 1;
+
+    while (lower <= upper)
+    {
+        middle = (lower + upper) / 2;
+
+        if (key < a[middle])
+        {
+            upper = middle - 1;
+        }
+        else if (key > a[middle])
+        {
+            lower = middle + 1;
+        }
+        else
+        {
+            return middle;
+        }
+    }
+
+    return -1;
+}
+
 
 int main()
 {
@@ -85,9 +112,18 @@ int main()
         bigData[i] = rand() % 101;
     }
 
-    int indexOfFive = SequentialSearch(bigData, arraySize, 5);
+    EnhancedBubbleSort(bigData, arraySize);
+
+    int indexOfFive = BinarySearch(bigData, arraySize, 5);
 
     std::cout << "Index of 5: " << indexOfFive << std::endl;
+
+    //Index result will be -1 if one of the sort functions isn't used because the Binary Search
+    //can't search unordered arrays.
+
+    //Sequential search is faster when you take into acccount the fact that the array has to be sorted in order for
+    //the binary search to work. If the array is already sorted, then the Binary and Sequential search seem to be done in a similar amount
+    //of time. After testing data with 100000 bytes, both searches finished in 89 seconds.
 
     return 0;
 }
