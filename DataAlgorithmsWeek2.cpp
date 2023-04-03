@@ -60,6 +60,18 @@ void EnhancedBubbleSort(int* a, int size)
     }
 }
 
+int SequentialSearch(int* a, int size, int key)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (a[i] == key)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
 
 int main()
 {
@@ -72,21 +84,10 @@ int main()
     for (int i = 0; i < arraySize; i++) {
         bigData[i] = rand() % 101;
     }
-    
-    auto start = std::chrono::high_resolution_clock::now();
-    //SelectionSort(bigData, arraySize);
-    //BubbleSort(bigData, arraySize);
-    EnhancedBubbleSort(bigData, arraySize);
 
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+    int indexOfFive = SequentialSearch(bigData, arraySize, 5);
 
-    for (int i = 0; i < arraySize; i++)
-    {
-        std::cout << bigData[i] << std::endl;
-    }
-
-    std::cout << "Time taken for sorting: " << duration.count() << " seconds" << std::endl;
+    std::cout << "Index of 5: " << indexOfFive << std::endl;
 
     return 0;
 }
